@@ -1,6 +1,6 @@
 var img;
 var particles = [];
-var numParticles = 30;
+var numParticles = 200;
 var pixDensity;
 
 function preload() {
@@ -22,16 +22,13 @@ function setup() {
   }
 
   frameRate(15); // Limit framerate for cross-device consistency
-}
-
-function draw() {
-  background(255);
 
   for (var i=0; i<numParticles; i++) {
+    console.log("Particle " + i + " of " + numParticles);
     var x1 = particles[i].x;
     var y1 = particles[i].y;
     particles[i].move();
-    particles[i].display();
+    //particles[i].display();
     for (var j=i+1; j<numParticles; j++) {
       var x2 = particles[j].x;
       var y2 = particles[j].y;
@@ -48,18 +45,23 @@ function draw() {
             var aveY = (y1+y2+y3)/3;
 
             var c = img.get(aveX,aveY);
-            fill(c[0],c[1],c[2],128);
-            stroke(255);
-            strokeWeight(0.5);
-            triangle(x1,y1,x2,y2,x3,y3);
+            if (brightness(c)<70) {
+              fill(c[0],c[1],c[2],128);
+              //stroke(255);
+              //strokeWeight(0.5);
+              triangle(x1,y1,x2,y2,x3,y3);
+            }
+
           } 
         }
 
       }
     }
   }
+}
 
-  text(img.get(mouseX,mouseY),mouseX,mouseY);
+function draw() {
+  //background(255);
 }
 
 function Particle(index) {
