@@ -1,7 +1,7 @@
 var img;
-var smallPoint, largePoint;
 var particles = [];
-var numParticles = 20;
+var numParticles = 30;
+var pixDensity;
 
 function preload() {
   img = loadImage("assets/portrait.jpg");
@@ -10,8 +10,9 @@ function preload() {
 function setup() {
   createCanvas(img.width, img.height);
 
-  imageMode(CENTER);
+  //imageMode(CENTER);
   img.loadPixels();
+  pixDensity = pixelDensity();
 
   noStroke();
   //colorMode(HSB,100);
@@ -45,7 +46,11 @@ function draw() {
           if (dist(x1,y1,x2,y2)<d && dist(x1,y1,x3,y3)<d && dist(x2,y2,x3,y3)<d) {
             var aveX = (x1+x2+x3)/3;
             var aveY = (y1+y2+y3)/3;
-            fill(img.get(aveX, aveY), 128);
+
+            var c = img.get(aveX,aveY);
+            fill(c[0],c[1],c[2],128);
+            stroke(255);
+            strokeWeight(0.5);
             triangle(x1,y1,x2,y2,x3,y3);
           } 
         }
@@ -54,6 +59,7 @@ function draw() {
     }
   }
 
+  text(img.get(mouseX,mouseY),mouseX,mouseY);
 }
 
 function Particle(index) {
