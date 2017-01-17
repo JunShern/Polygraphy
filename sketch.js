@@ -1,7 +1,7 @@
 var img;
 var smallPoint, largePoint;
 var particles = [];
-var numParticles = 30;
+var numParticles = 20;
 
 function preload() {
   img = loadImage("assets/portrait.jpg");
@@ -43,7 +43,9 @@ function draw() {
           // Check if particles are nearby and draw triangle if they are
           var d = 100;
           if (dist(x1,y1,x2,y2)<d && dist(x1,y1,x3,y3)<d && dist(x2,y2,x3,y3)<d) {
-            fill(img.get(x1, y1));
+            var aveX = (x1+x2+x3)/3;
+            var aveY = (y1+y2+y3)/3;
+            fill(img.get(aveX, aveY), 128);
             triangle(x1,y1,x2,y2,x3,y3);
           } 
         }
@@ -61,12 +63,14 @@ function Particle(index) {
   this.velY = random(-2,2);
   this.diameter = 5;
   
-  //this.c = color(random(10,50), 100, 100); 
+  colorMode(HSB,100);
+  this.c = color(0, 10, 70); 
+  colorMode(RGB,255);
 
   this.display = function() {
-    var pix = img.get(this.x, this.y);
-    fill(pix, 128);
-    //fill(this.c, 128);
+    //var pix = img.get(this.x, this.y);
+    //fill(pix, 128);
+    fill(this.c, 128);
     ellipse(this.x, this.y, this.diameter, this.diameter);
   }
 
