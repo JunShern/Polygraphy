@@ -1,15 +1,11 @@
 var img;
 var particles = [];
-var numParticles = 400;
+var numParticles = 600;
 var pixDensity;
 var i=0;
 
 function preload() {
-  //img = loadImage("assets/london.jpg");
-  //img = loadImage("assets/bird.jpg");
-  //img = loadImage("assets/hallstatt.jpg");
-  img = loadImage("assets/portrait.jpg");
-
+  img = loadImage("assets/kyoto.jpg");
 }
 
 function setup() {
@@ -45,7 +41,7 @@ function draw() {
       //particles[k].move();
       if (i!=j && i!=k && j!=k) {
         // Check if particles are nearby and draw triangle if they are
-        var d = (width+height)/15; //width/6;
+        var d = (width+height)/17; //width/6;
         if (dist(x1,y1,x2,y2)<d && dist(x1,y1,x3,y3)<d && dist(x2,y2,x3,y3)<d) {
           var aveX = (x1+x2+x3)/3;
           var aveY = (y1+y2+y3)/3;
