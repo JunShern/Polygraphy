@@ -5,7 +5,7 @@ var pixDensity;
 var i=0;
 
 function preload() {
-  img = loadImage("assets/kyoto.jpg");
+  img = loadImage("assets/portrait.jpg");
 }
 
 function setup() {
