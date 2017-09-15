@@ -4,6 +4,7 @@ var bgColor;
 
 function preload() {
   font = loadFont('assets/BreeSerif-Regular.ttf');
+  img = loadImage("assets/portrait.jpg");
 }
 
 function setup() {
